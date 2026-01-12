@@ -1,16 +1,16 @@
 class FizzyCli < Formula
   desc "CLI for managing Fizzy boards, cards, and tasks"
   homepage "https://github.com/robzolkos/fizzy-cli"
-  version "2.0.12"
+  version "2.0.13"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/robzolkos/fizzy-cli/releases/download/v#{version}/fizzy-darwin-arm64"
-      sha256 "36777712ce781e15b5aa4e5b6eaac01afb9b0a05fde0eb31d3d1c0eaa0a086f7"
+      sha256 "810ddfc8f8de592e099e9759db5a7eb90569d9fdf3dcdf0a8b1aa2dea744f953"
     else
       url "https://github.com/robzolkos/fizzy-cli/releases/download/v#{version}/fizzy-darwin-amd64"
-      sha256 "2a26e5c58f3116fd0423b0bc2235a542e43f89a7f7860b95b1360c96404348e9"
+      sha256 "29846146a75875345f2736ff1abed34bc33e4254ae8428e145db50651ab07687"
     end
   end
 
