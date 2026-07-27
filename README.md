@@ -26,12 +26,21 @@ automatically:
 
 ```bash
 brew tap basecamp/tap
+brew unlink fizzy-cli
 brew install --cask basecamp/tap/fizzy
 brew uninstall --formula --force fizzy-cli
 ```
 
+Run `brew unlink fizzy-cli` first. A cask will not overwrite an existing
+`bin/fizzy` symlink owned by the formula, so installing the cask while the
+formula is still linked silently skips the binary. Uninstalling the formula
+afterwards then removes the only `fizzy` on your PATH, leaving none. If you
+already hit this, `brew reinstall --cask fizzy` restores the link.
+
 Installing by fully-qualified name trusts the cask automatically, so the
-`brew trust` step Homebrew suggests is not needed here.
+`brew trust` step Homebrew suggests is not needed here. `brew migrate
+fizzy-cli`, which Homebrew also suggests, is a no-op for a formula-to-cask
+move.
 
 Once migrated, you can drop this tap:
 
