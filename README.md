@@ -1,43 +1,51 @@
-# Homebrew Tap for fizzy-cli
+# Homebrew Tap for fizzy-cli (migrated)
 
-This [Homebrew](https://brew.sh) tap provides the latest stable Fizzy 3.x release.
+> [!IMPORTANT]
+> Fizzy has moved to Basecamp's Homebrew tap. This tap no longer ships a formula
+> and exists only to migrate existing installs to `basecamp/tap/fizzy`.
 
-## Installation
+The `fizzy-cli` formula here has been replaced by the `fizzy` cask in
+[`basecamp/homebrew-tap`](https://github.com/basecamp/homebrew-tap), built from
+[`basecamp/fizzy-cli`](https://github.com/basecamp/fizzy-cli).
 
-```bash
-brew install robzolkos/fizzy-cli/fizzy-cli
-```
+## Migrating
 
-Or:
+Run `brew update`. Homebrew reads `tap_migrations.json` from this tap and points
+`fizzy-cli` at `basecamp/tap/fizzy`.
 
-```bash
-brew tap robzolkos/fizzy-cli
-brew install fizzy-cli
-```
-
-## Fizzy 4 transition
-
-> [!WARNING]
-> Fizzy 4 stable will be distributed from Basecamp's Homebrew tap once it is released. Fizzy 4 release candidates are available from [GitHub Releases](https://github.com/basecamp/fizzy-cli/releases) and are not published to Homebrew.
->
-> When Fizzy 4 stable is released, migrate with:
->
-> ```bash
-> brew uninstall robzolkos/fizzy-cli/fizzy-cli
-> brew untap robzolkos/fizzy-cli
-> brew install --cask basecamp/tap/fizzy
-> ```
-
-## Usage
-
-Once installed, the `fizzy` command is available:
+If you already have `basecamp/tap` tapped, Homebrew migrates you automatically,
+then asks you to remove the old keg:
 
 ```bash
-fizzy --help
+brew uninstall --formula --force fizzy-cli
 ```
 
-## Updating
+Otherwise Homebrew prints the commands to finish the migration. Because
+`basecamp/tap` is a third-party tap, Homebrew will not tap it for you
+automatically:
 
 ```bash
-brew upgrade fizzy-cli
+brew tap basecamp/tap
+brew install --cask basecamp/tap/fizzy
+brew uninstall --formula --force fizzy-cli
 ```
+
+Installing by fully-qualified name trusts the cask automatically, so the
+`brew trust` step Homebrew suggests is not needed here.
+
+Once migrated, you can drop this tap:
+
+```bash
+brew untap robzolkos/fizzy-cli
+```
+
+## Fresh installs
+
+Do not use this tap. Install from Basecamp's tap:
+
+```bash
+brew install --cask basecamp/tap/fizzy
+```
+
+Other installation methods are documented in the
+[fizzy-cli README](https://github.com/basecamp/fizzy-cli#readme).
