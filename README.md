@@ -21,15 +21,17 @@ brew uninstall --formula --force fizzy-cli
 ```
 
 Otherwise Homebrew prints the commands to finish the migration. Because
-`basecamp/tap` is a third-party tap, Homebrew will not tap it for you without
-explicit trust:
+`basecamp/tap` is a third-party tap, Homebrew will not tap it for you
+automatically:
 
 ```bash
 brew tap basecamp/tap
-brew trust basecamp/tap/fizzy
 brew install --cask basecamp/tap/fizzy
 brew uninstall --formula --force fizzy-cli
 ```
+
+Installing by fully-qualified name trusts the cask automatically, so the
+`brew trust` step Homebrew suggests is not needed here.
 
 Once migrated, you can drop this tap:
 
